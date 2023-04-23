@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2023/4/19 21:45
  * @Version 1.0
  */
-public class BaseDao<T> {
+public abstract class BaseDao<T> {
     private QueryRunner queryRunner = new QueryRunner();
     private Class<T> type = null;
     {
