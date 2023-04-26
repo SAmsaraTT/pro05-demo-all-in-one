@@ -39,11 +39,13 @@ public class TransactionFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String servletPath = httpServletRequest.getServletPath();
-        String substring = servletPath.substring(servletPath.lastIndexOf("."));
-        if (staticSet.contains(substring)) {
-            filterChain.doFilter(servletRequest, servletResponse);
+        if(servletPath.contains(".")) {
+            String substring = servletPath.substring(servletPath.lastIndexOf("."));
+            if (staticSet.contains(substring)) {
+                filterChain.doFilter(servletRequest, servletResponse);
 
-            return;
+                return;
+            }
         }
 
 
@@ -62,10 +64,9 @@ public class TransactionFilter implements Filter {
                 throw new RuntimeException(ex);
             }
             String msg = e.getMessage();
-            httpServletRequest.setAttribute("SystemMessage", msg);
+            httpServletRequest.setAttribute("systemMessage", msg);
             httpServletRequest.getRequestDispatcher("/").forward(httpServletRequest, servletResponse);
 
-            throw new RuntimeException(e);
         } finally {
             JDBCUtils.releaseConnection(connection);
         }

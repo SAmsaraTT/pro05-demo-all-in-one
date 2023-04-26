@@ -5,13 +5,53 @@
          version="4.0">
     <context-param>
         <param-name>view-prefix</param-name>
-        <param-value>/WEB-INF/pages</param-value>
+        <param-value>/WEB-INF/pages/</param-value>
     </context-param>
 
     <context-param>
         <param-name>view-suffix</param-name>
         <param-value>.html</param-value>
     </context-param>
+    
+    <servlet>
+        <servlet-name>PortalServlet</servlet-name>
+        <servlet-class>com.atguigu.imperial.court.servlet.module.PortalServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>PortalServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>com.atguigu.imperial.court.servlet.module.AuthServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>WorkServle</servlet-name>
+        <servlet-class>com.atguigu.imperial.court.servlet.module.WorkServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>WorkServle</servlet-name>
+        <url-pattern>/work</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.atguigu.imperial.court.filter.LoginFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/work</url-pattern>
+    </filter-mapping>
     
     <filter>
         <filter-name>txFilter</filter-name>
